@@ -14,7 +14,18 @@ runs:
     - name: Setup Cross
       shell: bash
       run: |
-        cargo install cross --git https://github.com/cross-rs/cross
+        if [ "$(uname -s)" = "Linux" ] && [ "$(uname -m)" = "x86_64" ]; then
+          # Use prebuilt binary for Linux x86_64
+          mkdir -p /tmp/cross
+          curl -L https://github.com/cross-rs/cross/releases/download/v0.2.5/cross-x86_64-unknown-linux-musl.tar.gz -o /tmp/cross/cross.tar.gz
+          tar -xzf /tmp/cross/cross.tar.gz -C /tmp/cross
+          chmod +x /tmp/cross/cross
+          mkdir -p "${CARGO_HOME:-$HOME/.cargo}/bin"
+          mv /tmp/cross/cross "${CARGO_HOME:-$HOME/.cargo}/bin/"
+        else
+          # Build from source for other platforms
+          cargo install cross --git https://github.com/cross-rs/cross
+        fi
 
 branding:
   icon: "box"

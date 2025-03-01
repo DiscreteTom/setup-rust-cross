@@ -24,7 +24,7 @@ runs:
           mv /tmp/cross/cross "${CARGO_HOME:-$HOME/.cargo}/bin/"
         else
           # Build from source for other platforms
-          cargo install cross --git https://github.com/cross-rs/cross
+          cargo install cross
         fi
 
 branding:

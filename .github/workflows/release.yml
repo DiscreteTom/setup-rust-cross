@@ -17,6 +17,9 @@ jobs:
 
       - name: Verify
         run: |
+          mkdir test-project
+          cd test-project
+          cargo init --bin
           cross --version
 
       # create the release

@@ -20,7 +20,7 @@ jobs:
           mkdir test-project
           cd test-project
           cargo init --bin
-          cross --version
+          cross build --target aarch64-unknown-linux-musl
 
       - name: Create release
         run: gh release create ${{ github.ref_name }} -t ${{ github.ref_name }} --verify-tag -n "See [CHANGELOG.md](https://github.com/DiscreteTom/setup-rust-cross/blob/main/CHANGELOG.md)."

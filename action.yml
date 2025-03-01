@@ -1,0 +1,21 @@
+name: "Setup Rust Cross"
+description: "Set up Rust toolchain and cross-rs."
+author: "DiscreteTom"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Rust
+      shell: bash
+      run: |
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+        echo "${CARGO_HOME:-$HOME/.cargo}/bin" >> $GITHUB_PATH
+
+    - name: Setup Cross
+      shell: bash
+      run: |
+        cargo install cross --git https://github.com/cross-rs/cross
+
+branding:
+  icon: "box"
+  color: "green"

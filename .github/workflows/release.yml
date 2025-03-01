@@ -1,0 +1,25 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Test
+        uses: ./
+
+      - name: Verify
+        run: |
+          cross --version
+
+      # create the release
+      - run: gh release create ${{ github.ref }} -t ${{ github.ref }} --verify-tag -n "See [CHANGELOG.md](https://github.com/DiscreteTom/setup-rust-cross/blob/main/CHANGELOG.md)."
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

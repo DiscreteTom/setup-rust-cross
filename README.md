@@ -11,7 +11,7 @@ This GitHub Action sets up Rust toolchains and [cross-rs](https://github.com/cro
 steps:
   - uses: actions/checkout@v4
 
-  - uses: DiscreteTom/setup-rust-cross@v1
+  - uses: DiscreteTom/setup-rust-cross@v0.1.0
 
   - name: Build for target
     run: cross build --target x86_64-unknown-linux-gnu

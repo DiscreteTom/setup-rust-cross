@@ -8,13 +8,19 @@ This GitHub Action sets up Rust toolchains and [cross-rs](https://github.com/cro
 ## Usage
 
 ```yaml
-steps:
-  - uses: actions/checkout@v4
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-  - uses: DiscreteTom/setup-rust-cross@v0.1.0
+      - name: Setup Rust toolchains and cross-rs
+        uses: DiscreteTom/setup-rust-cross@v0.1.1
 
-  - name: Build for target
-    run: cross build --target x86_64-unknown-linux-gnu
+      - name: Build
+        run: |
+          cross build --target aarch64-unknown-linux-musl
 ```
 
 ## [CHANGELOG](./CHANGELOG.md)

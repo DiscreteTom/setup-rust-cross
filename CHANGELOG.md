@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2025-03-01
+
 ### Added
 
 - For x86_64 linux environment, this will use the official pre-built binary instead of building from source.
@@ -23,5 +25,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Install Rust toolchain.
 - Install cross-rs.
 
-[unreleased]: https://github.com/DiscreteTom/setup-rust-cross/compare/v0.1.0...HEAD
+[unreleased]: https://github.com/DiscreteTom/setup-rust-cross/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/DiscreteTom/setup-rust-cross/releases/tag/v0.1.1
 [0.1.0]: https://github.com/DiscreteTom/setup-rust-cross/releases/tag/v0.1.0

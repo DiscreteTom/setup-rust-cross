@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - For x86_64 linux environment, this will use the official pre-built binary instead of building from source.
+- Add cache.
 
 ### Changed
 

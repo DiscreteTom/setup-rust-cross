@@ -5,13 +5,36 @@ author: "DiscreteTom"
 runs:
   using: "composite"
   steps:
+    - name: Cache Rust toolchain and dependencies
+      uses: actions/cache@v3
+      id: cache-rust
+      with:
+        path: |
+          ~/.cargo/bin/
+          ~/.cargo/registry/index/
+          ~/.cargo/registry/cache/
+          ~/.cargo/git/db/
+          ~/.rustup
+        key: ${{ runner.os }}-rust-${{ hashFiles('**/Cargo.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-rust-
+
+    - name: Cache Cross binary
+      uses: actions/cache@v3
+      id: cache-cross
+      with:
+        path: ~/.cargo/bin/cross
+        key: ${{ runner.os }}-cross-0.2.5
+
     - name: Setup Rust
+      if: steps.cache-rust.outputs.cache-hit != 'true'
       shell: bash
       run: |
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
         echo "${CARGO_HOME:-$HOME/.cargo}/bin" >> $GITHUB_PATH
 
     - name: Setup Cross
+      if: steps.cache-cross.outputs.cache-hit != 'true'
       shell: bash
       run: |
         if [ "$(uname -s)" = "Linux" ] && [ "$(uname -m)" = "x86_64" ]; then
